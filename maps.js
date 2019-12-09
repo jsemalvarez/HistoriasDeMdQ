@@ -51,7 +51,9 @@ L.tileLayer(tilesProvider,{
         categorias: ['arquitectura','historia','espiritual']
     },*/
 
-var lugares  = [    
+var lugares  = [ 
+    {latLong:{lat: "-37.99898", long:"-57.54903"}, info:{ nombre:"Catedral", historia:" Breve texto contando a modo introductorio", direccion:"direccion"}},  
+    {latLong:{lat: "-38.00271", long:"-57.54925"}, info:{ nombre:"Mezquita", historia:" Breve texto contando a modo introductorio", direccion:"direccion"}},
     {latLong:{lat: "-38.01320", long:"-57.53518"}, info:{ nombre:"Torre Tanque", historia:" Breve texto contando a modo introductorio", direccion:"direccion"}},
     {latLong:{lat: "-38.01964", long:"-57.55250"}, info:{nombre:"Viila Victoria Ocampo", historia:" Breve texto contando a modo introductorio", direccion:"direccion"}},
     {latLong:{lat: "-38.02088", long:"-57.55243"}, info:{nombre:"Viila Mitre", historia:" Breve texto contando a modo introductorio", direccion:"direccion"}},
@@ -66,6 +68,7 @@ var defaultIcon = L.icon({
 
 lugares.forEach(lugar => {
     L.marker([lugar.latLong.lat, lugar.latLong.long], {icon: defaultIcon})
+    .on('click', mostrarInfo)
     .addTo(myMap);
 })
 /*
@@ -76,7 +79,7 @@ var marker = L.marker([-37.99898, -57.54903])
 */
 
 var userIcon = L.icon({
-    iconUrl: 'iconos/user3.png',
+    iconUrl: 'iconos/user.png',
     iconSize:     [45, 40], // size of the icon
     //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
 });
@@ -97,3 +100,27 @@ navigator.geolocation.getCurrentPosition(
         maximumAge: 0
     }
 )
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////       CERRAR MODAL        ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+document.getElementById("btnClosed").addEventListener("click",function(){
+    document.getElementById("modal").style.display = "none";
+    visibleScrollBody()
+})
+
+function mostrarInfo(){   
+        document.getElementById("modal").style.display = "flex";
+        noneScrollBody()
+}
+
+function noneScrollBody(){
+    document.body.style.overflow = 'hidden';
+}
+
+function visibleScrollBody(){
+    document.body.style.overflow = 'visible';
+}
