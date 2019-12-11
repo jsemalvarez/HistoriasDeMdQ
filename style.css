@@ -1,6 +1,6 @@
 *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 h1{
@@ -16,9 +16,9 @@ h1{
 }
 
 #modal{     
-	display: none;
-	position: fixed;
-	top: -100vh;
+    display: none;	
+    position: fixed;
+    margin-top: -70px;
     width: 100%;    
 	max-height: 100vh;
     background: rgba(0,0,0,0.3);
@@ -26,12 +26,6 @@ h1{
 	align-items: center;
     overflow: hidden;
     z-index: 1500;
-    animation: showIn 0.4s linear forwards;
-}
-
-@keyframes showIn{
-    from {top: -100vh;}
-    to {top: 0vh;}
 }
 
 
@@ -46,20 +40,44 @@ h1{
     cursor: pointer;
 } 
 
-#modal article{   
+#modal article{  
+    position: relative;    
+	top: -100vh;
     margin: 50px;
     width: 50%;  
     max-height: 80vh;  
-    background-color: #3a3535;
+
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
     border-radius: 10px;
     padding: 20px 35px;
     color: #ffc55c;    
     font-family: 'Roboto', sans-serif;
     overflow:auto;
+    animation: showIn 0.7s linear forwards;
 }
 
-#modal footer{
-    
+@keyframes showIn{
+    from {top: -120vh;}
+    to {top: 0vh;}
+}
+
+#modal article::-webkit-scrollbar{
+    width: 7px;
+    background: #232526;
+    border-radius: 0 5px 5px 0;
+}
+
+#modal article::-webkit-scrollbar-thumb{
+    background: #ffc55c;
+    border-radius: 5px;
+    border-right: 2px solid #232526;
+}
+
+
+#modal footer{    
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
